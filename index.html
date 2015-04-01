@@ -5,7 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
         <title>WatchBat!</title>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.13/angular.min.js"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/css/bootstrap.min.css"/>
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/css/bootstrap.min.css"/> -->
+        <link rel="stylesheet" href="bootstrap-darkly.min.css"></script>
         <script>
          var module = angular.module('watchbatApp', []);
          module.controller('watchbat', function($scope, $http) {
@@ -53,22 +54,36 @@
              };
          });
         </script>
+        <style>
+          body {
+          background-color: black;
+          background-image: url('bat.png');
+          background-repeat: no-repeat;
+          background-size: cover;
+          }
+          .form-group .btn, .form-group label, .form-group input {
+          margin-right: 5px;
+          }
+        </style>
     </head>
     <body ng-app="watchbatApp" ng-controller="watchbat" class="container">
 
         <div class="row">
         <h1>WatchBat!</h1>
 
-        <form class="form">
-            <button class="btn btn-primary" type="button" ng-show="!observing" ng-click="start()" ng-disable="loading">Start Observing</button>
-            <div ng-show="observing" >
-                <button class="btn btn-default" type="button" ng-click="heard()" ng-disabled="loading"><i class="glyphicon glyphicon-volume-up"></i> I heard a bat! ~-_-~ </button>
-                <button class="btn btn-danger"type="button" ng-click="removeLast()" ng-disabled="loading">Remove last observation.</button>
-                <label for="count">Count: </label><input id="count" name="count" type="number" ng-model="count"/>
-                <button class="btn btn-primary" type="submit" ng-click="done()" ng-disabled="loading" >Done observing </button>
+        <form class="form form-inline">
+          <div class="form-group">
+            <button class="btn btn-primary btn-lg" type="button" ng-show="!observing" ng-click="start()" ng-disable="loading">Start Observing</button>
+            <div ng-show="observing">
+              <button class="btn btn-primary btn-lg" type="button" ng-click="heard()" ng-disabled="loading">I heard a bat!</button>
+              <button class="btn btn-danger btn-lg" type="button" ng-click="removeLast()" ng-disabled="loading">Remove last</button>
+              <label for="count">Count: </label>
+              <input id="count" class="form-control" name="count" type="number" ng-model="count"/>
+              <button class="btn btn-primary btn-lg" type="submit" ng-click="done()" ng-disabled="loading" >Done observing </button>
             </div>
+          </div>
         </form>
-        <table class="table table-striped table-condensed">
+        <table class="table table-striped table-condensed table-bordered">
             <thead>
                 <tr>
                     <td>#</td>
